@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="isShow">v-if isShow</div>
+        <div v-show="isShow">v-show isShow</div>
+        <!-- 性别为1的才显示 -->
+        <div v-if="loginUser.sex===1">{{loginUser.name+'-'+loginUser.sex}}</div>
+        <ul>
+            <li v-for="(loginUser,index) in userlist" v-if="loginUser.sex===1">{{loginUser.name+'-'+loginUser.sex}}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                //是否显示
+                isShow: false,
+                //用户
+                loginUser: { name: 'lookroot', sex: 2 },
+                userlist: [
+                    { name: 'lookroot', sex: 2 },
+                    { name: 'lili', sex: 1 }
+                ].filter(function (user) {
+                    return user.sex === 1;
+                })
+            }
+        },
+        created() {
+           
+        },
+    })
+</script>
+
+</html>

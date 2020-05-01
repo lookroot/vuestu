@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+   let vm = new Vue({
+        el: '#app',
+        // 完成创建之前 不能使用data和methods中的数据
+        beforeCreate() {
+            console.log('before');
+        },
+        // 数据已经初始化
+        created() {
+            console.log('created');
+        },
+        // 模板已将编辑在内存但是并未渲染，数据还未渲染到页面中
+        beforeMount() {
+            
+        },
+         //vue实例 已经挂载好页面了
+        mounted() {
+          
+        },
+         // 更新页面数据后 内存中data的数据已经改变 但是页面中的数据还没有完成渲染
+        beforeUpdate() {
+           
+        },
+        // 更新数据后 页面和data数据已经同步了
+        updated() {
+            
+        },
+         // 销毁当前实例
+        destroyed() {
+           
+        },
+    })
+</script>
+
+</html>

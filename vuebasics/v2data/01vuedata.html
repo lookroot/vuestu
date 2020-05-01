@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                // 定义字符串
+                name: 'lili',
+                // 定义数字
+                age: 1,
+                // 定义对象
+                user: { name: 'lookroot', age: 20 },
+                // 定义数组
+                userlist: [
+                    { name: 'lookroot', age: 20 },
+                    { name: 'lili', age: 21 }
+                ]
+            }
+        },
+        created() {
+            console.log(this.name);
+            console.log(this.age);
+            console.log(this.user);
+            console.log(this.userlist);
+        },
+    })
+</script>
+
+</html>

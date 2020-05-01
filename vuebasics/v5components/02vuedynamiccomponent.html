@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #67a3e1;
+        }
+
+        .bili-content {
+            display: flex;
+        }
+
+        .bili-content .bili-leftnav {
+            width: 200px;
+            background-color: #dee9f7;
+        }
+
+        .bili-content .bili-leftnav li {
+            padding: 10px 20px;
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .bili-content .bili-leftnav li:hover {
+            cursor: pointer;
+        }
+
+        .bili-content .bili-leftnav .active {
+            color: #5faee3;
+        }
+
+        .bili-content .bili-rightcontent {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .bili-content .bili-rightcontent div:nth-child(1) div {
+            margin-top: 10px;
+            background: #ffffff;
+            padding: 10px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="bili-content">
+            <div class="bili-leftnav">
+                <ul>
+                    <li :class="{active:showName=='writeback'}" @click="showName='writeback'">回复我的</li>
+                    <li :class="{active:showName=='aite'}" @click="showName='aite'">@我的</li>
+                    <li :class="{active:showName=='zan'}" @click="showName='zan'">收到赞的</li>
+                </ul>
+            </div>
+            <div class="bili-rightcontent">
+                <!-- 动态组件 -->
+                <transition enter-active-class="animated fadeInDown" leave-active-class="animated fadeInUp"
+                    mode="out-in" :duration="200">
+                    <component :is="showName">
+                        </omponent>
+                </transition>
+            </div>
+        </div>
+    </div>
+    <template id="writeback">
+        <div>
+            <div>回复我的</div>
+            <div>这是回复我的界面</div>
+        </div>
+    </template>
+    <template id="aite">
+        <div>
+            <div>@我的</div>
+            <div>这是@我的界面</div>
+        </div>
+    </template>
+    <template id="zan">
+        <div>
+            <div>收到的赞</div>
+            <div>这是收到赞的界面</div>
+        </div>
+    </template>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                showName: 'writeback',
+            }
+        },
+        methods: {
+
+        },
+        components: {
+            'writeback': {
+                template: '#writeback'
+            },
+            'aite': {
+                template: '#aite'
+            },
+            'zan': {
+                template: '#zan'
+            },
+        },
+    })
+</script>
+
+</html>

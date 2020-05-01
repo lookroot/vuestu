@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div v-color="'red'">red</div>
+        <div v-fontsize="'100px'">fontsize</div>
+    </div>
+</body>
+<script>
+    Vue.directive('color', {
+        // 指令绑定时间触发
+        bind: function (el, val) {
+            el.style.color = val.value
+        },
+        // 元素插入dom时触发
+        inserted: function (el) {
+            // el.style.color = 'blue'
+        },
+        // 元素更新时触发
+        updated: function (el) {
+            el.style.color = 'blue'
+        }
+    })
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            }
+        },
+        directives: {
+            'fontsize': {
+                bind: function (el, val) {
+                    el.style.fontSize = val.value
+                }
+            }
+        }
+    })
+</script>
+
+</html>

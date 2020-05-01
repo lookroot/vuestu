@@ -1,0 +1,15 @@
+{
+  "name": "webpackdemo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "webpack-dev-server --open --port 8081 --hot"
+  },
+  "author": "lookroot",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^4.42.0"
+  }
+}

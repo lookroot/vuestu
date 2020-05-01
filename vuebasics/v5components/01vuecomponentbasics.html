@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <vue-header></vue-header>
+        <son></son>
+        <vue-footer></vue-footer>
+    </div>
+    <!-- 定义son组件 和上面没有关系 -->
+    <template id="son">
+        <div>
+            <h2>我是son组件</h2>
+            <vue-header></vue-header> 
+            <vue-footer></vue-footer>
+        </div>
+    </template>
+</body>
+<script>
+    // 全局组件
+    Vue.component('vue-header', {
+        template: '<h2>我是全局</h2>',
+    });
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+
+            }
+        },
+        methods: {
+
+        },
+        // 私有组件
+        components: {
+            'vue-footer': {
+                template: '<h2 >我是footer私有组件</h2>',
+            },
+            'son': {
+                template: '#son',
+            }
+        },
+    })
+</script>
+
+</html>

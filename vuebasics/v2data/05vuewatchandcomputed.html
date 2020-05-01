@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" v-model.number="count1">
+        <input type="text" v-model.number="count2">
+        <div>输出:{{num}}</div> -->
+        <ul>
+            <li v-for="(loginUser,index) in showuserlist">{{loginUser.name+'-'+loginUser.sex}}</li>
+        </ul>
+        <!-- <input type="range" v-model="fontSize" min="0" max="100" step="5" /> -->
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                fontSize: 24,
+                count1: null,
+                count2: null,
+                userlist: [
+                    { name: 'lookroot', sex: 2 },
+                    { name: 'lili', sex: 1 }
+                ],
+            }
+        },
+        //监听器
+        watch: {
+            fontSize(newval, oldval) {
+                // console.log(newval,oldval);
+                if (newval > 50) {
+                    alert('字体太大了啊！');
+                    this.fontSize = oldval;
+                    return;
+                }
+            }
+        },
+        // 计算属性
+        computed: {
+            //计算和
+            num() {
+                return this.count1 + this.count2;
+            },
+            //返回应该渲染的数组
+            showuserlist() {
+                return this.userlist.filter((user) => {
+                    return user.sex === 1;
+                })
+            }
+        },
+    })
+</script>
+
+</html>

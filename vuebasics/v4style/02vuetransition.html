@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <style>
+        /* 出现时候的过渡效果 */
+        /* 最开始的转态 */
+        .v-enter {
+            opacity: 0;
+        }
+
+        /* 整个执行过程 */
+        .v-enter-active {
+            transition: all 1s ease;
+        }
+
+        /* 最后的样子 */
+        .v-enter-to {
+            font-size: 64px;
+        }
+
+        .v-leave {
+
+        }
+
+        /* 整个过程中 */
+        .v-leave-active {
+            transition: all 1s ease;
+        }
+
+        /* 最后的样子 */
+        .v-leave-to {
+            opacity: 0;
+            font-size: 64px;
+        }
+
+        .big-enter-active {
+            animation: ani1 1s ease;
+        }
+
+        .big-enter {
+            font-size: 100px;
+        }
+
+        .big-leave-active {
+            animation: ani1 1s ease;
+        }
+
+        @keyframes ani1 {
+            0% {
+                font-size: 24px;
+            }
+
+            50% {
+                font-size: 80px;
+            }
+
+            100% {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button v-on:click="isShow = !isShow">
+            Toggle
+        </button>
+        <!-- <transition>
+            <p v-if="isShow">我变化了</p>
+        </transition> -->
+        <!-- <transition name="big">
+            <p v-if="isShow">我变化了</p>
+        </transition> -->
+        <!-- <transition name="xxx" enter-active-class="animated bounceInUp" leave-active-class="animated bounceInDown">
+            <p v-if="isShow">我变化了</p>
+        </transition> -->
+        <transition :css="false" @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <div v-if="isShow">我变化了</div>
+        </transition>
+        <transition-group leave-active-class="animated bounceInDown" >
+            <div v-for="i in list" @click="del(i)" :key="i">{{i}}</div>
+        </transition-group>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                isShow: false,
+                list: [1, 2, 3, 4]
+            }
+        },
+        methods: {
+            del(i) {
+                this.list = this.list.filter((item) => {
+                    return item != i;
+                })
+            },
+            // 钩子动画
+            beforeEnter(el) {
+                el.style.opacity = 0
+            },
+            enter(el, done) {
+                //让浏览器重绘
+                el.offsetWidth
+                el.style.fontSize = "48px"
+                el.style.transition = "all 2s ease"
+                // 回调 用于执行afterEnter 
+                done();
+            },
+            afterEnter(el) {
+                el.style.opacity = 1
+            },
+        },
+    })
+</script>
+
+</html>

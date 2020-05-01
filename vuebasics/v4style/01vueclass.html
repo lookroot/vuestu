@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <style>
+        .color {
+            color: red;
+        }
+
+        .font {
+            font-size: 48px;
+        }
+
+        ul {
+            background-color: #dae5f5;
+        }
+
+        ul li {
+            height: 50px;
+            line-height: 50px;
+        }
+
+        ul li:hover {
+            cursor: pointer;
+        }
+
+        ul .active {
+            color: #5faee3;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 直接判断 -->
+        <div :class="{color:true}">showObj1</div>
+        <div :class="{color:isShow}">showObj1</div>
+        <!-- 三元表达式 常用！ -->
+        <div :class="isShow?'color':'font'">showObj1</div>
+        <!-- 对象 -->
+        <div :class="showObj">showObj2</div>
+        <!-- 数组 -->
+        <div :class="['font','color']">showObj3</div>
+        <!-- 数组加判断 -->
+        <div :class="['font',{color:isShow}]">showObj4</div>
+        <button @click="isShow=!isShow">toggle</button>
+        <ul>
+            <li :class="{active:showIndex==0}" @click="showIndex=0">回复我的</li>
+            <li :class="{active:showIndex==1}" @click="showIndex=1">@我的</li>
+            <li :class="{active:showIndex==2}" @click="showIndex=2">收到赞的</li>
+        </ul>
+        <!-- 绑定行内式 -->
+        <div :style="{color:'red'}">red</div>
+        <div :style="{color:inColor,fontSize:36+'px'}">red</div>
+        <div :style="styleObj">red</div>
+        <div v-for="i in 10" :style="{fontSize:i*10+'px'}">{{i}}</div>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                isShow: true,
+                showIndex: 0,
+                showObj: {
+                    'color': true
+                },
+                inColor: 'red',
+                styleObj: {
+                    color: 'red',
+                    fontSize: '48px'
+                }
+            }
+        },
+        methods: {
+
+        },
+    })
+</script>
+
+</html>

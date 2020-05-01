@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{title|msgFormat}}<br />
+        {{user.name}}-{{user.sex|sexFormat}}
+    </div>
+</body>
+<script>
+    Vue.filter('msgFormat', function (str) {
+        return str.replace('我去', '***');
+    })
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                title: '我去大家好',
+                user: {
+                    name: 'lili',
+                    sex: 1
+                }
+            }
+        },
+        filters: {
+            sexFormat(sex) {
+                return sex == 1 ? '男' : '女';
+            }
+        }
+    })
+</script>
+
+</html>

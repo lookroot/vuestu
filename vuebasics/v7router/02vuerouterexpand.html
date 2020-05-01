@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <script src="https://cdn.bootcss.com/vue-router/3.1.3/vue-router.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="app">
+        <!-- <router-link to="/page1">page1</router-link> -->
+        <button @click="gotoPage('/page1')">page1</button>
+        <button @click="gotoPage('/page2')">page2</button>
+        <router-view></router-view>
+    </div>
+    <template id="page1">
+        <div>
+            page1
+        </div>
+    </template>
+    <template id="page2">
+        <div>
+            page2
+        </div>
+    </template>
+    <template id="login">
+        <div>
+            <button @click="login">login</button>
+        </div>
+    </template>
+</body>
+<script>
+    const page1 = {
+        template: '#page1',
+        beforeRouteLeave(to, from, next) {
+            const result = window.confirm('确定离开页面吗？将不会保存')
+            if (result) {
+                next()
+            } else {
+                next(false)
+            }
+        }
+    }
+    const page2 = {
+        template: '#page2'
+    }
+    const login = {
+        template: '#login',
+        methods: {
+            login() {
+                Vue.prototype.isLogin = true;
+                //返回的意思
+                this.$router.back();
+            }
+        },
+    }
+    const router = new VueRouter({
+        routes: [
+            {
+                path: '/',
+                redirect: '/page1',
+                meta: { isLogin: true }
+            },
+            {
+                path: '/page1',
+                component: page1,
+                name: 'page1',
+                meta: { isLogin: true }
+            },
+            {
+                path: '/page2',
+                component: page2,
+                name: 'page2',
+                meta: { isLogin: true }
+            },
+            {
+                path: '/login',
+                component: login,
+                name: 'login'
+            },
+        ],
+    });
+    // 全局的 前置守卫
+    router.beforeEach((to, from, next) => {
+        console.log(Vue.prototype.isLogin);
+        // matched 路由记录
+        if (to.matched.some(item => item.meta.isLogin)) {
+            if (!Vue.prototype.isLogin) {
+                next({
+                    name: 'login'
+                });
+            } else {
+                next();
+            }
+        } else {
+            // 执行下一个钩子
+            next();
+        }
+
+    })
+    Vue.prototype.isLogin = false
+    let vm = new Vue({
+        el: '#app',
+        methods: {
+            gotoPage(path) {
+                console.log(path);
+                // 编程式的导航 params传值
+                this.$router.push(path)
+            }
+        },
+        router: router
+    })
+</script>
+
+</html>

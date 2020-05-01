@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <style>
+        img {
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <img src="https://www.baidu.com/img/bd_logo1.png" alt="">  -->
+        <!-- <img v-bind:src="avatar" alt=""> -->
+        <img :src="avatar" alt="">
+        <ul>
+            <li v-for="(user,index) in userlist" :key="index">
+                <img :src="user.avatar" alt="">
+                {{user.name+'-'+user.age}}
+                <input type="checkbox" name="" id="" :checked="user.sex===1">
+            </li>
+        </ul>
+        <!-- 输入<input type="text" v-model="title">输出:<span>{{title}}</span> -->
+        <form action="">
+            <input type="text" v-model="user.name">
+            <input type="text" v-model="user.age">
+            <select v-model="user.sex">
+                <option :value="sex.count" v-for="(sex,index) in sexlist">{{sex.name}}</option>
+            </select>
+            <button >存储</button>
+        </form>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                avatar: 'https://www.baidu.com/img/bd_logo1.png',
+                userlist: [
+                    { name: 'lookroot', age: 20, sex: 1, avatar: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=218375221,1552855610&fm=111&gp=0.jpg' },
+                    { name: 'lili', age: 21, sex: 2, avatar: 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1305353222,2352820043&fm=26&gp=0.jpg' }
+                ],
+                title: 'lookroot',
+                user: {
+                    name: 'lookroot',
+                    age: 12,
+                    sex: 2,
+                    avatar: ''
+                },
+                sexlist: [
+                    { count: 1, name: '男' },
+                    { count: 2, name: '女' },
+                ]
+            }
+        },
+        created() {
+
+        },
+    })
+</script>
+
+</html>

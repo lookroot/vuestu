@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+    <style>
+        img {
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 父组件传值给子组件 -->
+        <userListCom :getuserlist="userlist"></userListCom>
+        <userFormCom @submit="savesubmit" ref="userFormCom"></userFormCom>
+        <button @click="clear">清空表单</button>
+    </div>
+    <template id="userformcom">
+        <div>
+            <form action="">
+                <input type="text" v-model="user.name">
+                <input type="text" v-model="user.age">
+                <input type="text" v-model="user.avatar">
+                <select v-model="user.sex">
+                    <option :value="sex.count" v-for="(sex,index) in sexlist">{{sex.name}}</option>
+                </select>
+                <button @click.prevent="submit">存储</button>
+            </form>
+        </div>
+    </template>
+    <template id="userlistcom">
+        <ul>
+            <li v-for="(user,index) in getuserlist" :key="index">
+                <img :src="user.avatar" alt="">
+                {{user.name+'-'+user.age}}
+                {{user.sex===1?'男':'女'}}
+            </li>
+        </ul>
+    </template>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                count: 1,
+                userlist: [],
+            }
+        },
+        methods: {
+            clear() {
+                //触发子组件的事件
+                this.$refs.userFormCom.clearForm();
+            },
+            //模拟加载数据
+            loadData() {
+                //从后台加载中 实际开发这个 res 应该从后端获取....
+                console.log('加载数据中');
+                const res = [
+                    { name: 'lookroot', age: 20, sex: 1, avatar: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=218375221,1552855610&fm=111&gp=0.jpg' },
+                    { name: 'lili', age: 21, sex: 2, avatar: 'https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1305353222,2352820043&fm=26&gp=0.jpg' }
+                ];
+                console.log('加载完成');
+                // 赋值给 data中 userlist
+                this.userlist = res;
+            },
+            savesubmit(user) {
+                user = Object.assign({}, user);
+                this.userlist.push(user);
+            }
+        },
+        components: {
+            'userlistcom': {
+                template: '#userlistcom',
+                //父组件传值
+                props: {
+                    getuserlist: {
+                        type: Array,
+                        required: true
+                    },
+                }
+            },
+            'userformcom': {
+                template: '#userformcom',
+                data() {
+                    return {
+                        user: {
+                            name: 'lookroot',
+                            age: 12,
+                            sex: 2,
+                            avatar: ''
+                        },
+                        sexlist: [
+                            { count: 1, name: '男' },
+                            { count: 2, name: '女' },
+                        ]
+                    }
+                },
+                methods: {
+                    submit() {
+                        //触发父组件事件
+                        this.$emit('submit', this.user);
+                    },
+                    //清空表单
+                    clearForm() {
+                        this.user = {}
+                    }
+                }
+            }
+        },
+        // 在这个生命周期去后台读取数据
+        created() {
+            //调用初始化数据的方法
+            this.loadData();
+        },
+    })
+</script>
+
+</html>

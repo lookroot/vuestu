@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 文本插值的方式 -->
+        <h2>{{name}}</h2>
+        <h2>{{age}}</h2>
+        <h2>{{user}}</h2>
+        <h2>{{user.name+'-'+user.age}}</h2>
+        <!--展示JavaScript语句 -->
+        <h2>{{1+1}}</h2>
+        <h2>{{'lookroot'.split('').reverse().join('')}}</h2>
+        <!-- <ul>
+            <li>{{userlist[0].name+'-'+userlist[0].age}}</li>
+            <li>{{userlist[1].name+'-'+userlist[1].age}}</li>
+        </ul> -->
+        <!-- 遍历数组-->
+        <ul>
+            <li v-for="(user,index) in userlist" :key="index">{{user.name+'-'+user.age}}</li>
+        </ul>
+        <!-- 遍历对象 -->
+        <div v-for="(value,key,index) in user">
+            {{index}}- {{key}}-{{value}}
+        </div>
+        <!-- 迭代数字 -->
+        <div v-for="id in 10">{{id}}</div>
+        <!-- 插入原生html的方式 -->
+        <h2>{{userhtml}}</h2>
+        <div v-html="userhtml"></div>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data() {
+            return {
+                // 定义字符串
+                name: 'lili',
+                // 定义数字
+                age: 1,
+                // 定义对象
+                user: { name: 'lookroot', age: 20 },
+                // 定义数组
+                userlist: [
+                    { name: 'lookroot', age: 20 },
+                    { name: 'lili', age: 21 }
+                ],
+                // 定义一个原生html页面
+                userhtml: '<h2>lili</h2>'
+            }
+        },
+    })
+</script>
+
+</html>
