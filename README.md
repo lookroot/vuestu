@@ -23,7 +23,7 @@
 对应文档在每个文件夹里面的 readme
 
 - vuebasics vue基础教程
-- vueclidemo vue-cli脚手架基础
+- vueclidemo vue-cli脚手架基础和axios教程
 - vuexdemo vuex教程
 - webpackdemo webpack快速入门
 - webpackforvue 使用webpack打包vue项目
