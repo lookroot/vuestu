@@ -1,0 +1,19 @@
+{
+  "name": "protoblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "author": "lookroot",
+  "license": "ISC",
+  "devDependencies": {
+    "vuepress-plugin-auto-sidebar": "^1.4.1"
+  }
+}

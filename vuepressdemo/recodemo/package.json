@@ -1,0 +1,15 @@
+{
+  "name": "recodemo",
+  "version": "1.0.0",
+  "author": "reco_luan",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "devDependencies": {
+    "@vuepress-reco/vuepress-plugin-kan-ban-niang": "^1.0.5",
+    "vuepress": "1.4.1",
+    "vuepress-theme-reco": "1.4.5"
+  },
+  "description": "recodemo"
+}

@@ -27,5 +27,6 @@
 - vuexdemo vuex教程
 - webpackdemo webpack快速入门
 - webpackforvue 使用webpack打包vue项目
+- vuepressdemo vuepress教程
 - vuetrain vue面试题
 - answerdemo 一个答题小助手
