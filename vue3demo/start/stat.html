@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./js/vue.global.js"></script>
+</head>
+
+<body>
+    <div id='app'>
+    </div>
+    <template id="root">
+        <div>
+            {{msg}}
+        </div>
+    </template>
+</body>
+<script>
+    const {
+        createApp
+    } = Vue;
+    const root = {
+        template: '#root',
+        // beforeCreate  created data和methods 
+        setup(props) {
+            console.log('vue init');
+            const msg = "vue init";
+            return {
+                msg
+            };
+        },
+    }
+    createApp(root).mount('#app');
+</script>
+
+</html>
