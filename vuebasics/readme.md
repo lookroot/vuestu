@@ -1,5 +1,18 @@
 # vue基础部分知识
 
+[速度慢可以来我的博客](https://www.lookroot.cn/course/vuebasics/)
+
+## 目录
+
+- [vuejs的结构和生命周期](https://github.com/lookroot/vuestu/tree/master/vuebasics/v1starter)
+- [vue数据处理和渲染](https://github.com/lookroot/vuestu/tree/master/vuebasics/v2data)
+- [vue常用指令和事件](https://github.com/lookroot/vuestu/tree/master/vuebasics/v3event)
+- [vue组件](https://github.com/lookroot/vuestu/tree/master/vuebasics/v5components)
+- [vue过滤器和自定义指令](https://github.com/lookroot/vuestu/tree/master/vuebasics/v6filtersanddirective)
+- [vue路由](https://github.com/lookroot/vuestu/tree/master/vuebasics/v7router)
+- [vue单文件开发](https://github.com/lookroot/vuestu/tree/master/vuebasics/v8singlevuepage)
+
+
 ## vue使用场景
 
 大家可能都会有这种疑惑啊，到处都在讲学习vue，那么学了到底有啥用啊
