@@ -86,11 +86,9 @@ Vue.directive('color', {
     },
     // 元素插入dom时触发
     inserted: function (el) {
-        // el.style.color = 'blue'
     },
     // 元素更新时触发
     updated: function (el) {
-        el.style.color = 'blue'
     }
 })
 ```
