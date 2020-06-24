@@ -1,6 +1,6 @@
 # vuestu
 
-一个vue学习仓库:simple_smile:
+一个vue学习仓库 :simple_smile:
 
 - [速度慢可以来我的个人博客](https://www.lookroot.cn/)
 - [我的哔哩哔哩有视屏教程](https://space.bilibili.com/10433048)
@@ -12,6 +12,6 @@
 - [vueclidemo vue-cli脚手架基础和axios教程](https://github.com/lookroot/vuestu/tree/master/vueclidemo)
 - [vuexdemo vuex教程](https://github.com/lookroot/vuestu/tree/master/vuexdemo)
 - [vuepressdemo vuepress教程](https://github.com/lookroot/vuestu/tree/master/vuepressdemo)
-- webpackdemo webpack快速入门 重新录制中
-- webpackforvue 使用webpack打包vue项目 重新录制中
+- [webpackdemo  webpack快速入门](https://github.com/lookroot/vuestu/tree/master/webpackdemo)
+
 
