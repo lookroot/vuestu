@@ -1,8 +1,18 @@
-// import './css/app.css';
-import './css/app.less';
+import clg from './clg';
+import divdoc from './js/divdoc';
 
-console.log('我是被打包的文件');
+// import './css/app.less'
+import './css/app.css'
+// console.log('webpack init');
+clg('webpack init ');
+divdoc();
+if (module.hot) {
+    module.hot.accept('./clg.js', () => {
+        console.log("监听到clg.js文件修改");
+    })
+}
 
-[1, 2, 3].forEach(e => {
-    console.log(e);
-})
+let say = () => {
+    console.log("say");
+}
+say();

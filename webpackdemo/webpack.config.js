@@ -1,45 +1,56 @@
-//引入path模块
 const path = require('path');
-const webpack = require('webpack');
-const htmlWebpackPlugin = require('html-webpack-plugin');
-
-//导出一个配置文件模块
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require("webpack")
 module.exports = {
-    //环境
-    mode: 'development',
-    //目标文件
-    entry: [path.join(__dirname, './src/index.js')],
-    //自定义输出文件
-    output: {
-        path: path.join(__dirname, './dist'), //路径
-        filename: 'app.js'  //文件名称
-    },
+    //当前环境 开发环境 development 生产环境 production
+    mode: "development",
+    //source map 模式
+    devtool: "cheap-module-eval-source-map",
     //webpack-dev-server 配置文件
-    // devServer: {
-    //     open: true,
-    //     port: 8081,
-    //     contentBase: './',
-    //     hot: true,
-    // },
+    devServer: {
+        //日志模式
+        /**
+         * 日志模式  friendly-errors-webpack-plugin 插件可以优化输出
+         * errors-only  只在发生错误时触发
+         * minimal 只在发生错误或者有新的编译时输出
+         * none 没有输出
+         * normal 标准输出
+         * verbose 全部输出
+         */
+        stats: "errors-only",
+        host: process.env.HOST,
+        port: process.env.PORT,
+        open: true,
+        hot: true
+    },
+    // 多个 目标文件
+    entry: {
+        index: path.resolve(__dirname, './src/index.js'),
+        other: path.resolve(__dirname, './src/other.js')
+    },
+    //输出文件
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        filename: '[name].bundle.js'
+    },
     //插件
     plugins: [
-        //HMR 插件 如果你使用 webpack-dev-server打包 并且后面跟上了 --hot 就等同于开启了这个插件
-        // new webpack.HotModuleReplacementPlugin(),
-        // 打包页面文件
-        new htmlWebpackPlugin({
-            //模板文件地址 也就是要打包的页面文件
-            template: path.join(__dirname, './index.html'),
-            //生成在内存中的文件名
-            filename: 'index.html'
-        })
+        //使用插件 
+        new HtmlWebpackPlugin({
+            filename: "index.html",
+            title: "webpack demo",
+            chunks: ['index']
+        }),
+        new HtmlWebpackPlugin({
+            filename: "other.html",
+            title: "webpack demo",
+            chunks: ['other']
+        }),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NamedModulesPlugin()
     ],
+    //模块规则
     module: {
-        rules: [
-            //css
-            { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-            //less
-            { test: /\.less$/, use: ['style-loader', 'css-loader', 'less-loader'] },
-            { test: /\.js$/, use: 'babel-loader', exclude: /node_modules/ }
-        ]
+
     }
 }
