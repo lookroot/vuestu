@@ -11,3 +11,4 @@
 - [vuexdemo vuex教程](https://github.com/lookroot/vuestu/tree/master/vuexdemo)
 - [vuepressdemo vuepress教程](https://github.com/lookroot/vuestu/tree/master/vuepressdemo)
 - [consolegame 浏览器控制台游戏](https://github.com/lookroot/vuestu/tree/master/consolegame)
+- [unibasicdemo uniapp基础速览](https://github.com/lookroot/vuestu/tree/master/unibasicdemo)

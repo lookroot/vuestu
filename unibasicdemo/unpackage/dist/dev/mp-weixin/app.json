@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/list/list",
+    "pages/index/index",
+    "pages/content/content",
+    "pages/todocontent/todocontent"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#f55f25",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/logo.png",
+        "selectedIconPath": "static/icon.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "iconPath": "static/logo.png",
+        "selectedIconPath": "static/icon.png",
+        "text": "列表"
+      },
+      {
+        "pagePath": "pages/content/content",
+        "iconPath": "static/logo.png",
+        "selectedIconPath": "static/icon.png",
+        "text": "内容"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

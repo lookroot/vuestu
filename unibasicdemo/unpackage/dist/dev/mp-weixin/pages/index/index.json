@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "uni-app",
+  "navigationStyle": "custom",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "uni-nav-bar": "/components/uni-nav-bar/uni-nav-bar",
+    "wxcomdemo": "/wxcomponents/wxcomdemo/index"
+  }
+}
